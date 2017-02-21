@@ -7,19 +7,33 @@ $(document).ready(function(){
   //     })
   //   })
 
-    $('#signup').on('submit', function(e){
-      formInput = $('#signup').serialize()
-      console.log('input: ' + formInput)
-      e.preventDefault()
+    $('#message_form').on('submit', function(e){
       // e.preventDefault()
+      var $creator = $('#first_name').val()
+      var $title = $('#title').val()
+      var $body = $('#textarea').val()
+      var formInput = {
+        creator: $creator,
+        title: $title,
+        body: $body
+      }
+      console.log(formInput)
       $.post({
-        url: '/form',
+        url: '/',
         data: formInput,
-        success: function(data) {console.log('res: ' + data)}
-      })
+        success: (data) => {console.log(data)}
+        })
+
     })
 })
 
+
+// var statusMessage = function(text) {
+//   console.log('statusmessagecalled')
+//   setTimeout(function () {
+//     $('h1').append('blablabla')
+//   }, 300);
+// }
   //
   // post on button click
   // $('#searchSubmit').on('click', function(e){

@@ -6,36 +6,49 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BullitinBoard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-  <link rel="stylesheet" href="stle.css">
-  <script src="script.js" charset="utf-8"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
     <div class="row">
-      <h1>Posts</h1>
-      <ul id="post_list">
+      <div class="col s6 m6">
+        <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">B. Board</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active"><a href="/">MESSAGES</a></li>
+            <li><a  href="form">POST</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+      <div id="statusmessage"><h1><%= status %></h1></div>
+          <ul id="post_list"><% for(var i=0; i<posts.length; i++) {%>
+            <li>
+              <div class="card">
+              <div class="card-content ">
+                <span class="card-title">
+                  <%= posts[i].title %></span>
+                <p><%= posts[i].body %></p>
+              </div>
+              <div class="card-action">
+                <a href="#"><%= posts[i].creator %></a>
+              </div>
+            </div></li>
+              <% } %>
+          </ul>
+      <a class="btn-floating btn-large btn-add waves-effect waves-light green" href="form">+</a>
 
-                <div class="col s12 m7">
-           <h2 class="header">Horizontal Card</h2>
-           <div class="card horizontal">
-             <div class="card-image">
-               <img src="http://lorempixel.com/100/190/nature/6">
-             </div>
-             <div class="card-stacked">
-               <div class="card-content">
-                 <p>I am a very simple card. I am good at containing small bits of information.</p>
-               </div>
-               <div class="card-action">
-                 <a href="#">This is a link</a>
-               </div>
-             </div>
-           </div>
-         </div>
-      </ul>
+      </div>
     </div>
   </div>
-  <a class="btn-floating btn-large waves-effect waves-light red" href="form.html"><i class="material-icons">add</i></a>
 
+</div>
+</div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script src="script.js" charset="utf-8"></script>
 </body>
 </html>
