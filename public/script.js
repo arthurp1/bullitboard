@@ -6,7 +6,7 @@ $(document).ready(function(){
       var $title = $('#title').val()
       var $body = $('#textarea').val()
       var formInput = {
-        user: $user,
+        creator: $user,
         title: $title,
         body: $body
       }
@@ -14,13 +14,12 @@ $(document).ready(function(){
       $.post({
         url: '/form',
         data: formInput,
-        success: (data) => {console.log(data)}
+        success: (data) => {console.log('hoi:' + data)}
         })
 
     })
 
       $('#login_form').on('submit', function(e){
-
         e.preventDefault()
         var $user = $('#first_name').val()
         var $password = $('#password').val()
@@ -33,7 +32,7 @@ $(document).ready(function(){
         $.post({
           url: '/login',
           data: formInput,
-          success: (data) => {console.log(data)}
+          success: (data) => {console.log('hoi:' + data)}
           })
 
       })

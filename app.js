@@ -5,7 +5,11 @@ const sequelize = new Sequelize('postgres://' + process.env.POSTGRES_USER + ':' 
 const app = express()
 const session = require('express-session')
 const Cookies = require('js-cookie')
+const ORM = require('./orm-lite/index.js')
 
+ORM.initialize()
+
+// hello()
 //middleware
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
@@ -14,12 +18,12 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html')
 
 //models
-var User = sequelize.define ('user', {
+var User = ORM.server.define ('user', {
   user: Sequelize.STRING,
   password: Sequelize.STRING
 })
 
-var Message = sequelize.define('message', {
+var Message = ORM.server.define('message', {
   title: Sequelize.STRING,
   body: Sequelize.STRING
 })
@@ -31,14 +35,10 @@ Message.hasOne(User)
 
 //routes
 app.get('/', (req, res) => {
-sequelize
-    .sync()
-    .then(function(){
-      var messages = Message.findAll({ limit: 15})
+    ORM.getAll(Message)
     .then(function(messages) {
       res.render('index', {posts: messages, status: "Welcome!"})
     })
-  })
 })
 
 app.get('/form', (req, res) => {
@@ -74,7 +74,8 @@ app.post('/login', (req, res) => {
   sequelize
     .sync()
     .then(function () {
-      return User.findOne( { user : req.body.user } )
+      return findById(User, req.body.user)
+      // return User.findOne( { user : req.body.user } )
     })
     .then(function (user) {
       console.log(user.user)
