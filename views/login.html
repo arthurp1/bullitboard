@@ -16,17 +16,20 @@
             <a href="#" class="brand-logo">B. Board</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="/">MESSAGES</a></li>
-              <li><a href="/login">LOGIN</a></li>
-              <li class="active"><a  href="form">POST</a></li>
+                <li  class="active"><a href="/login">LOGIN</a></li>
+              <li><a  href="form">POST</a></li>
             </ul>
           </div>
         </nav>
       <div class="container">
       <div class="row">
       <div class=class="col s12">
+        <div id="error_message">
+          <%= error %>
+        </div>
   <!-- FORM BITCHES -->
-        <form id="message_form" action="/">
-          <h1>Post your message</h1>
+        <form id="login_form" action="/">
+          <h1>Login</h1>
           <div class="row">
             <div class="input-field col s12">
               <input  id="first_name" type="text">
@@ -34,17 +37,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12">
-              <input id="title" type="text">
-              <label for="title">Title</label>
-            </div>
-          </div>
-          <div class="row">
           <div class="input-field col s12">
-            <textarea id="textarea" class="materialize-textarea"></textarea>
-            <label for="textarea">Textarea</label>
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
           </div>
-        </div>
+          </div>
         <button class="waves-effect waves-light btn btn_post" type="submit">Post</button>
         <a class="waves-effect waves-teal btn-flat btn_back" href="/">Back</a>
       </form>
